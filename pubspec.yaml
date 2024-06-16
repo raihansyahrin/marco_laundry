@@ -1,0 +1,35 @@
+name: nusa_wash_laundry
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment:
+  sdk: '>=3.3.4 <4.0.0'
+
+dependencies:
+  cupertino_icons: ^1.0.6
+  get: 4.6.6
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  google_fonts: ^6.2.1
+  shimmer: ^3.0.0
+  flutter_svg: ^2.0.10+1
+  dropdown_search: ^5.0.6
+  intl: ^0.18.1
+  logger: ^2.3.0
+  colorful_safe_area: ^1.0.0
+  carousel_slider: ^4.2.1
+  flutter_time_picker_spinner: ^2.0.0
+  firebase_auth: ^5.1.0
+  cloud_firestore: ^5.0.1
+
+dev_dependencies:
+  flutter_lints: 4.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
