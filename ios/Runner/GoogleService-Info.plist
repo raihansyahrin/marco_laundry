@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyCehZ5ALJtZUX8TE4nFGjmySY8b7GIRx98</string>
+	<key>GCM_SENDER_ID</key>
+	<string>211101276863</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.nusawashlaundry.nusaWashLaundry</string>
+	<key>PROJECT_ID</key>
+	<string>nusawashlaundry-efd17</string>
+	<key>STORAGE_BUCKET</key>
+	<string>nusawashlaundry-efd17.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:211101276863:ios:993495d97e85a9d120040a</string>
+</dict>
+</plist>

@@ -115,7 +115,7 @@ class PaymentView extends GetView<PaymentController> {
             ),
           ),
           bottomNavigationBar: BottomBarTotal(
-            isLoading: controller.isLoading,
+            isLoading: controller.isLoadingLaundry,
             buttonTitle: 'Laundry Sekarang',
             isInputValid: controller.isInputValid,
             onButtonClicked: () {

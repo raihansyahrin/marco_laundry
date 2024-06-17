@@ -23,6 +23,11 @@ class DetailServiceView extends GetView<DetailServiceController> {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+
+    /*24 is for notification bar on Android*/
+    final double itemHeight = (size.height - kToolbarHeight - 24) / 5;
+    final double itemWidth = size.width / 2;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -51,10 +56,9 @@ class DetailServiceView extends GetView<DetailServiceController> {
                       child: GridView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
-                          childAspectRatio: 1.6,
+                          childAspectRatio: (itemWidth / itemHeight),
                           crossAxisSpacing: 8.0,
                           mainAxisSpacing: 8.0,
                         ),
@@ -111,10 +115,10 @@ class DetailServiceView extends GetView<DetailServiceController> {
                       child: GridView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
-                          childAspectRatio: 1.8,
+                          // childAspectRatio: 1.8,
+                          childAspectRatio: (itemWidth / itemHeight),
                           crossAxisSpacing: 8.0,
                           mainAxisSpacing: 8.0,
                         ),

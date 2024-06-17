@@ -4,17 +4,27 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RegisterController extends GetxController {
-  late User? _firebaseUser; // Menggunakan User? langsung dari FirebaseAuth
+  late User? user; // Menggunakan User? langsung dari FirebaseAuth
   bool isLoading = false; // State untuk loading
+  bool isPasswordHide = true;
+  bool formValid = false;
+  bool correctEmail = false;
+  bool correctPassword = false;
 
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
 
   @override
   void onInit() {
     super.onInit();
-    _firebaseUser = FirebaseAuth.instance.currentUser;
+    user = FirebaseAuth.instance.currentUser;
+  }
+
+  void onPressedIconPassword() {
+    isPasswordHide = !isPasswordHide;
+    update();
   }
 
   Future<void> register() async {
@@ -48,6 +58,9 @@ class RegisterController extends GetxController {
       // Handle registration errors
       // Optionally, show error message to the user
       Get.snackbar('Error', 'Registration failed. Please try again.');
+    } finally {
+      isLoading = false;
+      update();
     }
   }
 }
