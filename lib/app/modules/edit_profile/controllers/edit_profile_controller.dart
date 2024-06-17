@@ -6,9 +6,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:nusa_wash_laundry/app/modules/bottom_nav_bar/views/bottom_nav_bar_view.dart';
-import 'package:nusa_wash_laundry/app/modules/profile/controllers/profile_controller.dart';
-import 'package:nusa_wash_laundry/app/modules/profile/views/profile_view.dart';
 
 class EditProfileController extends GetxController {
   final TextEditingController nameController = TextEditingController();

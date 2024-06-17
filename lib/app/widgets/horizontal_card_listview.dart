@@ -41,13 +41,13 @@ class HorizontalCardListView extends StatelessWidget {
   String _getImage(int index) {
     switch (index) {
       case 0:
-        return 'assets/images/img_motor.png';
+        return 'assets/images/ic_delivery.png';
       case 1:
-        return 'assets/images/img_cheap.png';
+        return 'assets/images/ic_money.png';
       case 2:
         return 'assets/images/img_quality.png';
       case 3:
-        return 'assets/images/img_easytech.png';
+        return 'assets/images/ic_easy.png';
       default:
         return '';
     }

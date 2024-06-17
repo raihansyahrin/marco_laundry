@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 import 'package:nusa_wash_laundry/app/common/theme/font.dart';
 
 class CardJobVertical extends StatelessWidget {
@@ -44,7 +41,7 @@ class CardJobVertical extends StatelessWidget {
         children: [
           _buildImageContainer(),
           // _buildJobDetails(),
-          const SizedBox(height: 14),
+          const SizedBox(height: 6),
           _buildDetailCard()
         ],
       ),
@@ -76,7 +73,11 @@ class CardJobVertical extends StatelessWidget {
 
   _buildImageContainer() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      padding: const EdgeInsets.only(
+        left: 8,
+        right: 8,
+        top: 8,
+      ),
       child: ClipRRect(
         borderRadius: const BorderRadius.vertical(top: Radius.circular(8)),
         child: Image.asset(

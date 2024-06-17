@@ -64,13 +64,13 @@ class EditProfileView extends GetView<EditProfileController> {
                       TextField(
                         controller: controller.nameController,
                         decoration: const InputDecoration(
-                          labelText: 'Name',
+                          labelText: 'Nama',
                         ),
                       ),
                       TextField(
                         controller: controller.phoneController,
                         decoration: const InputDecoration(
-                          labelText: 'Phone',
+                          labelText: 'Nomor Hp',
                         ),
                         keyboardType: TextInputType.phone,
                       ),
