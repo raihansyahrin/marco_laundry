@@ -10,7 +10,7 @@ class DetailServiceController extends GetxController {
 
   final List<Color> itemColorsListCuciLipat = List<Color>.generate(
     listCuciLipat.length,
-    (index) => Colors.lightBlue,
+    (index) => Colors.lightBlue.withOpacity(0.5),
   ).obs;
 
   void changeColorCuciLipat(int index) {
@@ -23,7 +23,7 @@ class DetailServiceController extends GetxController {
 
   final List<Color> itemColorsListCuciSetrika = List<Color>.generate(
     listCuciLipat.length,
-    (index) => Colors.lightBlue,
+    (index) => Colors.lightBlue.withOpacity(0.5),
   ).obs;
 
   void changeColorCuciSetrika(int index) {

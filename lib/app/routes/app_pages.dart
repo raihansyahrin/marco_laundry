@@ -4,6 +4,8 @@ import '../modules/bottom_nav_bar/bindings/bottom_nav_bar_binding.dart';
 import '../modules/bottom_nav_bar/views/bottom_nav_bar_view.dart';
 import '../modules/detail_service/bindings/detail_service_binding.dart';
 import '../modules/detail_service/views/detail_service_view.dart';
+import '../modules/edit_profile/bindings/edit_profile_binding.dart';
+import '../modules/edit_profile/views/edit_profile_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
@@ -14,13 +16,17 @@ import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
+import '../modules/splash_screen/bindings/splash_screen_binding.dart';
+import '../modules/splash_screen/views/splash_screen_view.dart';
+
+// ignore_for_file: constant_identifier_names
 
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.BOTTOM_NAV_BAR;
+  static const INITIAL = Routes.LOGIN;
 
   static final routes = [
     GetPage(
@@ -45,7 +51,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PAYMENT,
-      page: () => PaymentView(),
+      page: () => const PaymentView(),
       binding: PaymentBinding(),
     ),
     GetPage(
@@ -57,6 +63,16 @@ class AppPages {
       name: _Paths.LOGIN,
       page: () => const LoginView(),
       binding: LoginBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_PROFILE,
+      page: () => const EditProfileView(),
+      binding: EditProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.SPLASH_SCREEN,
+      page: () => const SplashScreenView(),
+      binding: SplashScreenBinding(),
     ),
   ];
 }

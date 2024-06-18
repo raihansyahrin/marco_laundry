@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "211101276863",
+    "project_id": "nusawashlaundry-efd17",
+    "storage_bucket": "nusawashlaundry-efd17.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:211101276863:android:909a628a9ae2ecbb20040a",
+        "android_client_info": {
+          "package_name": "com.nusawashlaundry.nusa_wash_laundry"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMzXp6omq4nvNgTEI2cQ8WfPYo4BKXdKw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:211101276863:android:3121748530c77cd720040a",
+        "android_client_info": {
+          "package_name": "com.raihan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMzXp6omq4nvNgTEI2cQ8WfPYo4BKXdKw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

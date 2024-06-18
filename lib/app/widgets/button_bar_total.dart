@@ -73,22 +73,22 @@ class BottomBarTotal extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: isLoading
-                    ? const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 3.0),
-                        child: CircularProgressIndicator(
-                          color: Colors.lightBlue,
-                        ),
-                      )
-                    : Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(
-                            Icons.shopping_cart_checkout,
-                            color: Colors.blue,
-                          ),
-                          const SizedBox(width: 5),
-                          Text(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.shopping_cart_checkout,
+                      color: Colors.blue,
+                    ),
+                    const SizedBox(width: 5),
+                    isLoading
+                        ? const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 3.0),
+                            child: CircularProgressIndicator.adaptive(
+                              backgroundColor: Colors.lightBlue,
+                            ),
+                          )
+                        : Text(
                             buttonTitle,
                             style: semiBoldText14.copyWith(
                               color: Colors.blue,
@@ -99,8 +99,8 @@ class BottomBarTotal extends StatelessWidget {
                             //   color: Colors.black,
                             // ),
                           ),
-                        ],
-                      ),
+                  ],
+                ),
               ),
             ),
           ),

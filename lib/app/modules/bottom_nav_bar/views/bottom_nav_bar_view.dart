@@ -11,6 +11,7 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
 
   @override
   Widget build(BuildContext context) {
+    Get.lazyPut(() => BottomNavBarController());
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Obx(() => controller.pages[controller.currentIndex.value]),
