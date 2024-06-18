@@ -28,6 +28,8 @@ class PaymentView extends GetView<PaymentController> {
         return Scaffold(
           backgroundColor: const Color.fromARGB(255, 252, 252, 252),
           appBar: AppBar(
+            surfaceTintColor: Colors.transparent,
+            backgroundColor: const Color.fromARGB(255, 252, 252, 252),
             title: const Text('Pembayaran'),
             centerTitle: true,
           ),
@@ -65,50 +67,104 @@ class PaymentView extends GetView<PaymentController> {
                     title: 'Alamat',
                   ),
                   const SizedBox(height: 20),
-                  InkWell(
-                    onTap: controller.showAddressModal,
-                    borderRadius: BorderRadius.circular(5),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.grey.withOpacity(0.1),
-                          width: 2,
-                        ),
-                        borderRadius: BorderRadius.circular(5),
+                  // InkWell(
+                  //   onTap: controller.showAddressModal,
+                  //   borderRadius: BorderRadius.circular(5),
+                  //   child: Container(
+                  //     decoration: BoxDecoration(
+                  //       border: Border.all(
+                  //         color: Colors.grey.withOpacity(0.1),
+                  //         width: 2,
+                  //       ),
+                  //       borderRadius: BorderRadius.circular(5),
+                  //     ),
+                  //     padding: const EdgeInsets.all(16),
+                  //     child: Row(
+                  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //       crossAxisAlignment: CrossAxisAlignment.center,
+                  //       children: [
+                  //       _buildAddressSummary(), // Show address summary here
+                  //         CircleAvatar(
+                  //           backgroundColor: Colors.grey.withOpacity(0.2),
+                  //           child: const Icon(
+                  //             Icons.chevron_right_rounded,
+                  //             color: Colors.lightBlueAccent,
+                  //             size: 36,
+                  //           ),
+                  //         ),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
+                  Column(
+                    children: [
+                      GetBuilder<PaymentController>(
+                        builder: (_) {
+                          final name = controller.nameController.text;
+                          final phone = controller.phoneController.text;
+                          final address = controller.addressController.text;
+                          final houseNumber =
+                              controller.houseNumberController.text;
+
+                          bool isIncomplete =
+                              (name.isNotEmpty || phone.isNotEmpty) &&
+                                  (address.isEmpty || houseNumber.isEmpty);
+
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: isIncomplete
+                                        ? Colors.red
+                                        : Colors.grey.withOpacity(0.1),
+                                    width: 2,
+                                  ),
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                child: InkWell(
+                                  onTap: controller.showAddressModal,
+                                  borderRadius: BorderRadius.circular(5),
+                                  child: Container(
+                                    padding: const EdgeInsets.all(16),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        _buildAddressSummary(),
+                                        CircleAvatar(
+                                          backgroundColor:
+                                              Colors.grey.withOpacity(0.2),
+                                          child: const Icon(
+                                            Icons.chevron_right_rounded,
+                                            color: Colors.lightBlueAccent,
+                                            size: 36,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              if (isIncomplete)
+                                Container(
+                                  alignment: Alignment.centerRight,
+                                  padding: const EdgeInsets.only(top: 2.0),
+                                  child: Text(
+                                    '*Mohon lengkapi alamat',
+                                    style: mediumText14.copyWith(
+                                      color: Colors.red,
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          );
+                        },
                       ),
-                      padding: const EdgeInsets.all(16),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          _buildAddressSummary(), // Show address summary here
-                          CircleAvatar(
-                            backgroundColor: Colors.grey.withOpacity(0.2),
-                            child: const Icon(
-                              Icons.chevron_right_rounded,
-                              color: Colors.lightBlueAccent,
-                              size: 36,
-                            ),
-                          ),
-                          // Column(
-                          //   crossAxisAlignment: CrossAxisAlignment.start,
-                          //   children: [
-                          //     _buildAddressSummary(), // Show address summary here
-                          //     const SizedBox(height: 16),
-                          //     SizedBox(
-                          //       width: double.infinity,
-                          //       child: TextButton(
-                          //         onPressed: () {
-                          //           controller.showAddressModal();
-                          //         },
-                          //         child: const Text('Atur Alamat'),
-                          //       ),
-                          //     ),
-                          //   ],
-                          // ),
-                        ],
-                      ),
-                    ),
+                    ],
                   ),
                 ],
               ),
@@ -266,10 +322,10 @@ class PaymentView extends GetView<PaymentController> {
   Widget _buildAddressSummary() {
     return GetBuilder<PaymentController>(
       builder: (_) {
-        final name = _.nameController.text;
-        final phone = _.phoneController.text;
-        final address = _.addressController.text;
-        final houseNumber = _.houseNumberController.text;
+        final name = controller.nameController.text;
+        final phone = controller.phoneController.text;
+        final address = controller.addressController.text;
+        final houseNumber = controller.houseNumberController.text;
 
         if (name.isEmpty &&
             phone.isEmpty &&
@@ -290,12 +346,17 @@ class PaymentView extends GetView<PaymentController> {
                   style: mediumText14,
                 ),
                 const SizedBox(height: 5),
-                Text(
-                  address,
-                  overflow: TextOverflow.clip,
-                  maxLines: 4,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      address,
+                      overflow: TextOverflow.clip,
+                      maxLines: 4,
+                    ),
+                    Text('No.$houseNumber'),
+                  ],
                 ),
-                Text('No.$houseNumber'),
               ],
             ),
           );

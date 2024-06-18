@@ -29,8 +29,11 @@ class DetailServiceView extends GetView<DetailServiceController> {
     final double itemHeight = (size.height - kToolbarHeight - 24) / 5;
     final double itemWidth = size.width / 2;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color.fromARGB(255, 252, 252, 252),
       appBar: AppBar(
+        surfaceTintColor: Colors.transparent,
+        backgroundColor: const Color.fromARGB(255, 252, 252, 252),
+        elevation: 1,
         title: Text(
           isCuciLipat ? 'Cuci Lipat' : 'Cuci Setrika',
         ),

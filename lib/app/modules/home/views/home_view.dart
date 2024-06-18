@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -29,402 +31,410 @@ class HomeView extends GetView<HomeController> {
                 await controller.getUserData();
               },
               color: Colors.lightBlue,
-              child: SingleChildScrollView(
-                physics: const AlwaysScrollableScrollPhysics(),
+              child: ListView(
+                physics: const ClampingScrollPhysics(),
+                shrinkWrap: true,
                 keyboardDismissBehavior:
                     ScrollViewKeyboardDismissBehavior.onDrag,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 6,
-                        horizontal: 20,
+                children: [
+                  Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 6,
+                          horizontal: 20,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Image.asset(
+                              'assets/images/LogoNusaWash.png',
+                              height: 50,
+                            ),
+                            controller.isLoadingUser
+                                ? Shimmer.fromColors(
+                                    baseColor: const Color.fromARGB(
+                                        255, 148, 148, 148),
+                                    highlightColor:
+                                        const Color.fromARGB(255, 102, 95, 95),
+                                    child: Container(
+                                      height: 40,
+                                      width: 100,
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey.withOpacity(0.5),
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                      ),
+                                    ),
+                                  )
+                                : Container(
+                                    padding: const EdgeInsets.only(
+                                      top: 3,
+                                      bottom: 3,
+                                      left: 12,
+                                      right: 4,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color:
+                                          const Color.fromARGB(255, 0, 67, 122),
+                                      borderRadius: BorderRadius.circular(100),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color:
+                                              Colors.lightBlue.withOpacity(0.5),
+                                          spreadRadius: 1,
+                                          blurRadius: 5,
+                                          offset: const Offset(
+                                            0,
+                                            2,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          controller.name!.split(' ').first,
+                                          style: mediumText12.copyWith(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 10),
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(100),
+                                          child: Container(
+                                            height: 30,
+                                            width: 30,
+
+                                            color: Colors
+                                                .white, // Warna putih untuk bagian yang tidak diisi gambar
+                                            child: controller.profileImageUrl !=
+                                                    null
+                                                ? Image.network(
+                                                    controller.profileImageUrl!,
+                                                    height: 24,
+                                                    width: 24,
+                                                    fit: BoxFit
+                                                        .cover, // Penting untuk memastikan gambar terisi penuh
+                                                  )
+                                                : const Icon(
+                                                    Icons.person,
+                                                    size: 24,
+                                                    color: Colors
+                                                        .grey, // Warna ikon jika tidak ada gambar
+                                                  ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  )
+                          ],
+                        ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Image.asset(
-                            'assets/images/LogoNusaWash.png',
-                            height: 50,
-                          ),
-                          controller.isLoadingUser
+                      const SizedBox(height: 12),
+                      controller.order == null
+                          ? Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
+                              height: 210,
+                              child: Stack(
+                                children: [
+                                  Positioned(
+                                    top: 0,
+                                    left: 0,
+                                    right: 0,
+                                    child: Container(
+                                      height: 80,
+                                      alignment: Alignment.topLeft,
+                                      decoration: BoxDecoration(
+                                        color: const Color.fromARGB(
+                                            255, 0, 67, 122),
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                          top: 10,
+                                          left: 16,
+                                        ),
+                                        child: Text(
+                                          'Status laundry,',
+                                          style: semiBoldText14.copyWith(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    top: 40,
+                                    left: 0,
+                                    right: 0,
+                                    child: Container(
+                                      height: 150,
+                                      decoration: BoxDecoration(
+                                        color: Colors.lightBlue,
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      child: Stack(
+                                        children: [
+                                          Positioned(
+                                            bottom: 0,
+                                            child: Align(
+                                              alignment: Alignment.bottomCenter,
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    const BorderRadius.only(
+                                                  bottomLeft:
+                                                      Radius.circular(20),
+                                                  bottomRight:
+                                                      Radius.circular(20),
+                                                ),
+                                                child: SvgPicture.asset(
+                                                  'assets/images/img_backgroundcard.svg',
+                                                  // alignment: Alignment.center,
+                                                  // width: 200,
+                                                  height: 82.5,
+                                                  fit: BoxFit.fill,
+                                                  color: Colors.blue
+                                                      .withOpacity(0.4),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(16.0),
+                                            child: Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Image.asset(
+                                                  'assets/images/ic_laundrysatuan.png',
+                                                  fit: BoxFit.fitWidth,
+                                                  width: 80,
+                                                ),
+                                                const SizedBox(width: 12),
+                                                Expanded(
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Text(
+                                                        'Belum ada pesanan',
+                                                        style: semiBoldText18
+                                                            .copyWith(
+                                                          color: Colors.white,
+                                                        ),
+                                                        overflow:
+                                                            TextOverflow.clip,
+                                                      ),
+                                                      const SizedBox(height: 5),
+                                                      Text(
+                                                        'Ayo laundry di NusaWash',
+                                                        style: regularText12
+                                                            .copyWith(
+                                                          color: Colors.white
+                                                              .withOpacity(0.8),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          : controller.isLoading
                               ? Shimmer.fromColors(
                                   baseColor:
                                       const Color.fromARGB(255, 148, 148, 148),
                                   highlightColor:
                                       const Color.fromARGB(255, 102, 95, 95),
                                   child: Container(
-                                    height: 40,
-                                    width: 100,
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 20),
+                                    height: 200,
+                                    width: double.infinity,
                                     decoration: BoxDecoration(
                                       color: Colors.grey.withOpacity(0.5),
-                                      borderRadius: BorderRadius.circular(100),
+                                      borderRadius: BorderRadius.circular(20),
                                     ),
                                   ),
                                 )
                               : Container(
-                                  padding: const EdgeInsets.only(
-                                    top: 3,
-                                    bottom: 3,
-                                    left: 12,
-                                    right: 4,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color:
-                                        const Color.fromARGB(255, 0, 67, 122),
-                                    borderRadius: BorderRadius.circular(100),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color:
-                                            Colors.lightBlue.withOpacity(0.5),
-                                        spreadRadius: 1,
-                                        blurRadius: 5,
-                                        offset: const Offset(
-                                          0,
-                                          2,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        controller.name!.split(' ').first,
-                                        style: mediumText12.copyWith(
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      const SizedBox(width: 10),
-                                      ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(100),
-                                        child: Container(
-                                          height: 30,
-                                          width: 30,
-
-                                          color: Colors
-                                              .white, // Warna putih untuk bagian yang tidak diisi gambar
-                                          child: controller.profileImageUrl !=
-                                                  null
-                                              ? Image.network(
-                                                  controller.profileImageUrl!,
-                                                  height: 24,
-                                                  width: 24,
-                                                  fit: BoxFit
-                                                      .cover, // Penting untuk memastikan gambar terisi penuh
-                                                )
-                                              : const Icon(
-                                                  Icons.person,
-                                                  size: 24,
-                                                  color: Colors
-                                                      .grey, // Warna ikon jika tidak ada gambar
-                                                ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                )
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    controller.order == null
-                        ? Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            height: 210,
-                            child: Stack(
-                              children: [
-                                Positioned(
-                                  top: 0,
-                                  left: 0,
-                                  right: 0,
-                                  child: Container(
-                                    height: 80,
-                                    alignment: Alignment.topLeft,
-                                    decoration: BoxDecoration(
-                                      color:
-                                          const Color.fromARGB(255, 0, 67, 122),
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                        top: 10,
-                                        left: 16,
-                                      ),
-                                      child: Text(
-                                        'Status laundry,',
-                                        style: semiBoldText14.copyWith(
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Positioned(
-                                  top: 40,
-                                  left: 0,
-                                  right: 0,
-                                  child: Container(
-                                    height: 150,
-                                    decoration: BoxDecoration(
-                                      color: Colors.lightBlue,
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                    child: Stack(
-                                      children: [
-                                        Positioned(
-                                          bottom: 0,
-                                          child: Align(
-                                            alignment: Alignment.bottomCenter,
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  const BorderRadius.only(
-                                                bottomLeft: Radius.circular(20),
-                                                bottomRight:
-                                                    Radius.circular(20),
-                                              ),
-                                              child: SvgPicture.asset(
-                                                'assets/images/img_backgroundcard.svg',
-                                                // alignment: Alignment.center,
-                                                // width: 200,
-                                                height: 82.5,
-                                                fit: BoxFit.fill,
-                                                color: Colors.blue
-                                                    .withOpacity(0.4),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(16.0),
-                                          child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Image.asset(
-                                                'assets/images/ic_laundrysatuan.png',
-                                                fit: BoxFit.fitWidth,
-                                                width: 80,
-                                              ),
-                                              const SizedBox(width: 12),
-                                              Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      'Belum ada pesanan',
-                                                      style: semiBoldText18
-                                                          .copyWith(
-                                                        color: Colors.white,
-                                                      ),
-                                                      overflow:
-                                                          TextOverflow.clip,
-                                                    ),
-                                                    const SizedBox(height: 5),
-                                                    Text(
-                                                      'Ayo laundry di NusaWash',
-                                                      style: regularText12
-                                                          .copyWith(
-                                                        color: Colors.white
-                                                            .withOpacity(0.8),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                        : controller.isLoading
-                            ? Shimmer.fromColors(
-                                baseColor:
-                                    const Color.fromARGB(255, 148, 148, 148),
-                                highlightColor:
-                                    const Color.fromARGB(255, 102, 95, 95),
-                                child: Container(
-                                  margin: const EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       horizontal: 20),
-                                  height: 200,
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                ),
-                              )
-                            : Container(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 20),
-                                height: 210,
-                                child: Stack(
-                                  children: [
-                                    Positioned(
-                                      top: 0,
-                                      left: 0,
-                                      right: 0,
-                                      child: Container(
-                                        height: 80,
-                                        alignment: Alignment.topLeft,
-                                        decoration: BoxDecoration(
-                                          color: const Color.fromARGB(
-                                              255, 0, 67, 122),
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(
-                                            top: 10,
-                                            left: 16,
+                                  height: 210,
+                                  child: Stack(
+                                    children: [
+                                      Positioned(
+                                        top: 0,
+                                        left: 0,
+                                        right: 0,
+                                        child: Container(
+                                          height: 80,
+                                          alignment: Alignment.topLeft,
+                                          decoration: BoxDecoration(
+                                            color: const Color.fromARGB(
+                                                255, 0, 67, 122),
+                                            borderRadius:
+                                                BorderRadius.circular(20),
                                           ),
-                                          child: Text(
-                                            'Status laundry kak ${controller.order!.name},',
-                                            style: semiBoldText14.copyWith(
-                                              color: Colors.white,
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                              top: 10,
+                                              left: 16,
+                                            ),
+                                            child: Text(
+                                              'Status laundry kak ${controller.order!.name},',
+                                              style: semiBoldText14.copyWith(
+                                                color: Colors.white,
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                    Positioned(
-                                      top: 40,
-                                      left: 0,
-                                      right: 0,
-                                      child: Container(
-                                        height: 150,
-                                        decoration: BoxDecoration(
-                                          color: Colors.lightBlue,
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(16.0),
-                                          child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Image.asset(
-                                                'assets/images/ic_laundrysatuan.png',
-                                                fit: BoxFit.fitWidth,
-                                                width: 80,
-                                              ),
-                                              const SizedBox(width: 12),
-                                              Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      'Sedang dilaundry',
-                                                      style: semiBoldText18
-                                                          .copyWith(
-                                                        color: Colors.white,
-                                                      ),
-                                                      overflow:
-                                                          TextOverflow.clip,
-                                                    ),
-                                                    Text(
-                                                      'Mohon ditunggu ya kak.',
-                                                      style: regularText12
-                                                          .copyWith(
-                                                        color: Colors.white
-                                                            .withOpacity(0.8),
-                                                      ),
-                                                    ),
-                                                    const SizedBox(height: 10),
-                                                    Container(
-                                                      height: 1,
-                                                      width: MediaQuery.sizeOf(
-                                                                  context)
-                                                              .width -
-                                                          115,
-                                                      margin:
-                                                          const EdgeInsetsDirectional
-                                                              .only(
-                                                        start: 1.0,
-                                                        // end: 1.0,
-                                                      ),
-                                                      color: Colors.white
-                                                          .withOpacity(0.7),
-                                                    ),
-                                                    const SizedBox(height: 10),
-                                                    Align(
-                                                      alignment:
-                                                          Alignment.centerRight,
-                                                      child: Container(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .symmetric(
-                                                          vertical: 5,
-                                                          horizontal: 16,
-                                                        ),
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          // color: const Color
-                                                          //     .fromARGB(
-                                                          //     255, 0, 67, 122),
-                                                          color: Colors.amber,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                            100,
-                                                          ),
-                                                        ),
-                                                        child: Text(
-                                                          // formatCurrency(
-                                                          //   controller.order!
-                                                          //       .totalPrice,
-                                                          // ),
-                                                          'On Progress',
-                                                          style: mediumText14
-                                                              .copyWith(
-                                                            color: Colors.white,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    )
-                                                  ],
+                                      Positioned(
+                                        top: 40,
+                                        left: 0,
+                                        right: 0,
+                                        child: Container(
+                                          height: 150,
+                                          decoration: BoxDecoration(
+                                            color: Colors.lightBlue,
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(16.0),
+                                            child: Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Image.asset(
+                                                  'assets/images/ic_laundrysatuan.png',
+                                                  fit: BoxFit.fitWidth,
+                                                  width: 80,
                                                 ),
-                                              )
-                                            ],
+                                                const SizedBox(width: 12),
+                                                Expanded(
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Text(
+                                                        'Sedang dilaundry',
+                                                        style: semiBoldText18
+                                                            .copyWith(
+                                                          color: Colors.white,
+                                                        ),
+                                                        overflow:
+                                                            TextOverflow.clip,
+                                                      ),
+                                                      Text(
+                                                        'Mohon ditunggu ya kak.',
+                                                        style: regularText12
+                                                            .copyWith(
+                                                          color: Colors.white
+                                                              .withOpacity(0.8),
+                                                        ),
+                                                      ),
+                                                      const SizedBox(
+                                                          height: 10),
+                                                      Container(
+                                                        height: 1,
+                                                        width:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .width -
+                                                                115,
+                                                        margin:
+                                                            const EdgeInsetsDirectional
+                                                                .only(
+                                                          start: 1.0,
+                                                          // end: 1.0,
+                                                        ),
+                                                        color: Colors.white
+                                                            .withOpacity(0.7),
+                                                      ),
+                                                      const SizedBox(
+                                                          height: 10),
+                                                      Align(
+                                                        alignment: Alignment
+                                                            .centerRight,
+                                                        child: Container(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .symmetric(
+                                                            vertical: 5,
+                                                            horizontal: 16,
+                                                          ),
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            // color: const Color
+                                                            //     .fromARGB(
+                                                            //     255, 0, 67, 122),
+                                                            color: Colors.amber,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                              100,
+                                                            ),
+                                                          ),
+                                                          child: Text(
+                                                            // formatCurrency(
+                                                            //   controller.order!
+                                                            //       .totalPrice,
+                                                            // ),
+                                                            'On Progress',
+                                                            style: mediumText14
+                                                                .copyWith(
+                                                              color:
+                                                                  Colors.white,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
+                                                )
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                    const SizedBox(height: 20),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height,
-                      width: double.infinity,
-                      child: Stack(
+                      const SizedBox(height: 20),
+                      Stack(
                         children: [
                           Positioned(
-                            bottom: 0,
+                            top: 0,
                             child: Container(
                               height: MediaQuery.of(context).size.height,
                               width: MediaQuery.of(context).size.width,
                               decoration: const BoxDecoration(
                                 color: Color.fromARGB(255, 248, 253, 255),
                                 borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(20),
-                                ),
-                              ),
+                                  top: Radius.circular(30),
+                                ),                              ),
                             ),
                           ),
-
                           Padding(
                             padding: const EdgeInsets.all(20.0),
                             child: Column(
@@ -509,26 +519,11 @@ class HomeView extends GetView<HomeController> {
                               ],
                             ),
                           ),
-
-                          // Positioned(
-                          //   top: 0,
-                          //   child: Container(
-                          //     height: 300,
-                          //     width:
-                          //         MediaQuery.of(context).size.width, // Use full width
-                          //     decoration: const BoxDecoration(
-                          //       color: Colors.red,
-                          //       borderRadius: BorderRadius.vertical(
-                          //         top: Radius.circular(20),
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
                         ],
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ),

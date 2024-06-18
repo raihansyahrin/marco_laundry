@@ -63,17 +63,17 @@ class PaymentController extends GetxController {
         // Convert DocumentSnapshot to Map<String, dynamic>
         Map<String, dynamic> data =
             userData.data() as Map<String, dynamic>? ?? {};
+        print(userData);
 
         // Check if the document exists
         if (userData.exists) {
           nameController.text = data['name'] ?? '';
-          phoneController.text = data['phone'] ?? 0;
+          phoneController.text = '0${data['phone']}';
           // emailcon = user.email ?? '';
           update();
         } else {
           // Handle case where document does not exist
           nameController.text = '';
-
           phoneController.text = '';
 
           update();
@@ -330,6 +330,14 @@ class PaymentController extends GetxController {
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
+                  style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll<Color>(
+                      Colors.lightBlue,
+                    ),
+                    foregroundColor: MaterialStatePropertyAll<Color>(
+                      Colors.white,
+                    ),
+                  ),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       Get.back();

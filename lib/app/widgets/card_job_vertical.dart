@@ -50,15 +50,15 @@ class CardJobVertical extends StatelessWidget {
 
   _buildDetailCard() {
     return Container(
+      height: 64,
+      width: 140,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.vertical(
           bottom: Radius.circular(20),
         ),
         color: Colors.lightBlue,
       ),
-      padding: const EdgeInsets.symmetric(
-        vertical: 10,
-      ),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 3),
       child: Text(
         title,
         textAlign: TextAlign.center,
