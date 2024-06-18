@@ -42,7 +42,7 @@ class PaymentView extends GetView<PaymentController> {
                     children: [
                       _buildTitleSection(
                         icon: Icons.access_time_rounded,
-                        title: 'Waktu Pengambilan',
+                        title: 'Waktu Pick Up',
                       ),
                       const SizedBox(height: 20),
                       _buildTakeUpTimeLaundryPicker(
@@ -247,7 +247,7 @@ class PaymentView extends GetView<PaymentController> {
                 ),
                 Text(
                   birthDatePickedController.text.isEmpty
-                      ? 'Pilih Tanggal Pengambilan'
+                      ? 'Pilih Tanggal Pick Up'
                       : birthDatePickedController.text,
                   style: regularText16,
                 ),
@@ -299,7 +299,7 @@ class PaymentView extends GetView<PaymentController> {
                 ),
                 Text(
                   timePickedController.text.isEmpty
-                      ? 'Pilih Jam Pengambilan'
+                      ? 'Pilih Jam Pick Up'
                       : timePickedController.text,
                   style: regularText16,
                 ),
