@@ -31,7 +31,7 @@ class ProfileView extends GetView<ProfileController> {
                       await controller.getUserData();
                     },
                     child: ListView(
-                        physics: const ClampingScrollPhysics(),
+                        // physics: const ClampingScrollPhysics(),
                         // shrinkWrap: true,
                         children: [
                           Column(

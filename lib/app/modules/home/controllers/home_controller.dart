@@ -18,7 +18,7 @@ class HomeController extends GetxController {
 
   String? name;
   String? email;
-  int? phone;
+  String? phone;
   String? profileImageUrl;
 
   final List<String> listImage = [

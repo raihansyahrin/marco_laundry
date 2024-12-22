@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,7 +10,7 @@ class ProfileController extends GetxController {
 
   String? name;
   String? email;
-  int? phone;
+  String? phone;
   String? profileImageUrl; // Add this line to store profile image URL
 
   @override

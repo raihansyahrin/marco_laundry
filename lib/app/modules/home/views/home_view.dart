@@ -1,9 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
+import 'package:flutter/material.dart' hide CarouselController;
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:nusa_wash_laundry/app/common/theme/font.dart';
@@ -432,7 +429,8 @@ class HomeView extends GetView<HomeController> {
                                 color: Color.fromARGB(255, 248, 253, 255),
                                 borderRadius: BorderRadius.vertical(
                                   top: Radius.circular(30),
-                                ),                              ),
+                                ),
+                              ),
                             ),
                           ),
                           Padding(
